@@ -10,7 +10,6 @@
   "author": "",
   "license": " MIT",
   "dependencies": {
-    "doubleratchet": "0.0.4",
-    "uuidv4": "^6.2.5"
+    "doubleratchet": "0.0.4"
   }
 }
