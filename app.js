@@ -34,12 +34,9 @@ function deliver(message) {
 
 // Generate and encrypt message
 function generateMessage(message) {
-  if (message.to === 'person1' || message.to === 'person2') {
-    if (message.to === 'person2') {
-      deliver(person1.encrypt(`${message.text}`))
-    } else {
-      deliver(person2.encrypt(`${message.text}`))
-    }
+  if (['person1', 'person2'].includes(message.to)) {
+    const currentPerson =  message.to === "person1" ? person1 : person2;
+    deliver(currentPerson.encrypt(`${message.text}`))
   } else {
     console.log('Error, incorrect user');
     return
@@ -66,23 +63,18 @@ rl.on('line', (input) => {
         console.log('No message for receive');
         return;
       }
-
-      if (personName === 'person1') {
-        console.log(person1.decrypt(currentMessage));
-      } else
-      if (personName === 'person2') {
-        console.log(person2.decrypt(currentMessage));
+      if (['person1', 'person2'].includes(personName)) {
+        const receiveForPerson = personName === 'person1' ? person1 : person2;
+        console.log(receiveForPerson.decrypt(currentMessage));
       } else {
         console.log('Error, incorrect user');
       }
       break;
 
     case 'getState':
-      if (personName === 'person1') {
-        console.log(currentStateForPerson1);
-      } else
-      if (personName === 'person2') {
-        console.log(currentStateForPerson2);
+      if (['person1', 'person2'].includes(personName)) {
+        const stateForPerson = personName === 'person1' ? currentStateForPerson1 : currentStateForPerson2;
+        console.log(stateForPerson);
       } else {
         console.log('Error, incorrect user');
       }
