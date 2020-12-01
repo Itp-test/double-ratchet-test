@@ -3,9 +3,9 @@ const Ratchet = require('doubleratchet').Ratchet;
 const fs = require("fs");
 
 // Added secret between two parties
-const pskRoot       = '010061d5eb6946be4a77'
-const pskHeader     = '020061d5eb6946be4a77'
-const pskNextHeader = '030061d5eb6946be4a77'
+const pskRoot       = '010061d5eb6946be4a77';
+const pskHeader     = '020061d5eb6946be4a77';
+const pskNextHeader = '030061d5eb6946be4a77';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -35,7 +35,7 @@ function deliver(message) {
 // Generate and encrypt message
 function generateMessage(message) {
   if (['person1', 'person2'].includes(message.to)) {
-    const currentPerson =  message.to === "person1" ? person1 : person2;
+    const currentPerson = message.to === "person1" ? person1 : person2;
     deliver(currentPerson.encrypt(`${message.text}`))
   } else {
     console.log('Error, incorrect user');
@@ -114,4 +114,3 @@ rl.on('line', (input) => {
       break;
   }
 });
-
